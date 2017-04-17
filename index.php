@@ -20,7 +20,7 @@ switch($page){
 		include("vaaded/galerii.html");
 	break;
 	case "vordle":
-		include("vaaded/vote.html");
+		include("vaaded/vordle.php");
 	break;
 
 	case "cross":
@@ -44,9 +44,6 @@ switch($page){
 	default:
 	include('vaaded/pealeht.html');
 }
-
-
-
 
 	require_once("vaaded/foot.html");
 ?>

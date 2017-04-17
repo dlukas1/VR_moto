@@ -36,26 +36,24 @@ body {	background-color: orange;	}
 	}
 
 
-
 	@keyframes example {
-	0% {background-image: : url("motopics/man.png");}
-    15% {background-image: url("motopics/cross.jpg"); }
+	0%  {background-image: url("motopics/first.jpg");}
+    20% {background-image: url("motopics/cross.jpg"); }
     30% {background-image: url("motopics/enduro.jpg"); }
     45% {background-image: url("motopics/sport.jpg"); }
     60% {background-image: url("motopics/naked.jpg"); }
     75% {background-image: url("motopics/cruiser.jpg"); }
     90% {background-image: url("motopics/touring.jpg");}
-    100% {background-color: red}
+    100% {background-image: url("motopics/rur.jpg");}
 
 }
 
 	#anime {
    
-    background-image: url("motopics/cross.jpg");
-    background-color: red;
+   height: 400px; width: 50%;
+    background-image: url("motopics/first.jpg");
     animation-name: example;
-    animation-duration: 40s;
+    animation-duration: 60s;
     animation-iteration-count: 10;
 }
-
 	
