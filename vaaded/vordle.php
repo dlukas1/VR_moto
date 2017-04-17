@@ -1,6 +1,19 @@
+<h3>Võrdle motorattatüübid ja vali endale parim!</h3>
 <div id="gallery">
-	<?php foreach($pildid as $id=>$pilt):?>
+
+<form action="?page=comparing" method="POST">
+	<?php 
+	foreach($pildid as $id=>$pilt):?>
 		
-		<a href="<?php echo $pilt['url'];?>"><img src="<?php echo $pilt['src'];?>" alt="<?php echo $pilt['alt'];?>"/> </a>
+			<label for="p<?php echo $id;?>">
+				<img src="<?php echo $pilt['src'];?>" alt="<?php echo $pilt['alt'];?>" height="100" />
+			</label>
+			<input type="checkbox" value="<?php echo $id;?>" id="p<?php echo $id;?>" name="pilt"/>
+	
 	<?php endforeach; ?>
-</div>
+
+	<br>
+		<input type="submit" value="Võrdle!"/>
+	<br>
+	
+</form>
