@@ -1,7 +1,7 @@
 <h3>Võrdle motorattatüübid ja vali endale parim!</h3>
 <div id="gallery">
 
-<form action="?page=comparing" method="POST">
+<form action="?page=vorreldus" method="POST">
 	<?php 
 	foreach($pildid as $id=>$pilt):?>
 		

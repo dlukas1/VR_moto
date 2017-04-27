@@ -1,0 +1,13 @@
+
+
+	<h3>Võrrelduse tulemused: </h3>
+	<p>Valisid selle ilusa pildi: <br/>
+<?php
+foreach ($pildid[$id] as $key => $value) :?>
+	<img src="<?php echo $pildid[$id]['src'];?>" alt="väljavalitu"/>
+<?php endforeach; ?>
+
+		
+
+
+		<a href="?page=vordle">vali uuesti!</a>
