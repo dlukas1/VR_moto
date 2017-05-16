@@ -1,9 +1,5 @@
-<?php 
 
-	<h3>Oled teinud oma valiku</h3>
-	<p>Valisid selle ilusa pildi: <br/>
-		<img src="<?php echo $pildid[$id]['src'];?>" alt="väljavalitu"/></p>
-		<a href="?page=vote">vali uuesti!</a>
-<?php else: ?>
-	<h3>Sellist pilti ei eksisteeri, palun tee uus <a href="?page=vote">valik</a>.</h3>
-<?php endif; ?>
+	<h3>Võrreldus:</h3>
+	<p><img src="<?php echo $pildid[$id]['src'];?>" alt="valitud"/></p>
+		<a href="?page=vordle">Vali uuesti!</a>
+
