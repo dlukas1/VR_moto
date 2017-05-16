@@ -81,13 +81,46 @@ function kuva_touring(){
 	include_once("vaaded/foot.html");
 };
 
-function kuva_vorreldus(){
+function kuva_vorreldus()
+	{
+		$user = "root";
+		$pass = "";
+		$db = "test";
+		$host = "localhost";
+		$link = mysqli_connect($host, $user,$pass, $db) or die("ei saanudühendatud - " . mysqli_error());
 		include_once("vaaded/head.html");
-		$id=false;
-		if (isset($_POST['pilt']) && isset($pildid[$_POST['pilt']]))
-		$id=htmlspecialchars($_POST['pilt']);
-		include("vaaded/vorreldus.php");
-		include_once("vaaded/foot.html");
+
+if(isset($_POST['submit'])){//to run PHP script on submit
+if(!empty($_POST['check_list'])){
+			// Loop to store and display values of individual checked checkbox.
+foreach($_POST['check_list'] as $selected){
+		$query = "SELECT mudel, omadused, hind, pilt FROM dlukas_moto  WHERE id = $selected";
+		$result = mysqli_query($link, $query) or die("$query - ".mysqli_error($link));
+		while ($row = mysqli_fetch_assoc($result)) 
+		{//$img = <img src = '$row['pilt']'>;
+
+		//вывод полученного 
+	echo '<img src="' . $row['pilt'] . '" height = "20%" width = "20%">'."	<br/> Motorattas <strong>{$row['mudel']} </strong> <br/>omadused: {$row['omadused']} <br/>hinnaga: <i> {$row['hind']} </i>. <br/>"; 
+	
+
+
+		//ЗАПОЛНИМ ТАБЛИЦУ ДЛЯ УДОБСТВА
+	echo '<table>';
+	echo '<tr><th>title</td><td>price</td><td>number</td></tr>';
+	while ($row = mysqli_fetch_assoc($result))  {
+
+	    echo '<tr>';
+	    	echo 'mudelee';
+	    	echo 'eededede';
+	    	echo 'ggtgtthy';
+	    echo '</tr>';
+	}
+	echo '</table>';
+					}	
+				}
+			}
+	include_once("vaaded/foot.html");
+	}
 }
 function alusta_sessioon(){
 	// siin ees võiks muuta ka sessiooni kehtivusaega, aga see pole hetkel tähtis

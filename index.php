@@ -4,12 +4,12 @@ require_once("vaaded/functions.php");
 alusta_sessioon(); 
 
 $pildid = array(
-		1=>array('src'=>"motothumb/cross.jpg", 		'alt'=>"cross", 'url'=>'motot/cross.html'),
-		2=>array('src'=>"motothumb/cruiser.jpg", 	'alt'=>"cruiser", 'url'=>'motot/cruiser.html'),
-		3=>array('src'=>"motothumb/enduro.jpg", 	'alt'=>"enduro", 'url'=>'motot/enduro.html'),
-		4=>array('src'=>"motothumb/naked.jpg", 		'alt'=>"naked", 'url'=>'motot/naked.html'),
-		5=>array('src'=>"motothumb/sport.jpg", 		'alt'=>"sport", 'url'=>'motot/sport.html'),
-		6=>array('src'=>"motothumb/touring.jpg", 	'alt'=>"touring", 'url'=>'motot/touring.html'),
+		1=>array('src'=>"motothumb/cross.jpg", 		'alt'=>"cross", 	'url'=>'motot/cross.html'),
+		2=>array('src'=>"motothumb/cruiser.jpg", 	'alt'=>"cruiser", 	'url'=>'motot/cruiser.html'),
+		3=>array('src'=>"motothumb/enduro.jpg", 	'alt'=>"enduro", 	'url'=>'motot/enduro.html'),
+		4=>array('src'=>"motothumb/naked.jpg", 		'alt'=>"naked", 	'url'=>'motot/naked.html'),
+		5=>array('src'=>"motothumb/sport.jpg", 		'alt'=>"sport", 	'url'=>'motot/sport.html'),
+		6=>array('src'=>"motothumb/touring.jpg", 	'alt'=>"touring", 	'url'=>'motot/touring.html'),
 	);
 
 $page="pealeht";
@@ -49,6 +49,7 @@ switch($page){
 			break;
 	case "vorreldus":
 		kuva_vorreldus();
+		echo "tetete";
 			break;
 	default:
 	kuva_pealeht();

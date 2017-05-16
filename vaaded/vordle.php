@@ -5,6 +5,7 @@
 <h3>Võrdle motorattatüübid ja vali endale parim!</h3>
 
 <div id="gallery">
+
 <form action="?page=vorreldus" method="POST">
 	
 	<?php 
@@ -13,12 +14,15 @@
 			<label for="p<?php echo $id;?>">
 				<img src="<?php echo $pilt['src'];?>" alt="<?php echo $pilt['alt'];?>" height="100" />
 			</label>
-			<input type="checkbox" value="<?php echo $id;?>" id="p<?php echo $id;?>" name="pilt"/>
+			<input type="checkbox" value="<?php echo $id;?>" id="p<?php echo $id;?>" name="check_list[]"/>
 	
 	<?php endforeach; ?>
 
-	<br>
-		<input type="submit" value="Võrdle!"/>
-	<br>
+	<br><br>
+		<input type="submit" name="submit" value="Võrdle!"/>
+	<br><br>
+
+
+
 	
 </form>
