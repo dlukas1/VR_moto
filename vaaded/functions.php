@@ -82,8 +82,7 @@ function kuva_touring(){
 };
 
 function kuva_vorreldus()
-	{
-		$user = "root";
+	{	$user = "root";
 		$pass = "";
 		$db = "test";
 		$host = "localhost";
@@ -100,12 +99,15 @@ foreach($_POST['check_list'] as $selected){
 		{//$img = <img src = '$row['pilt']'>;
 
 		//вывод полученного 
-	echo '<img src="' . $row['pilt'] . '" height = "20%" width = "20%">'."	<br/> Motorattas <strong>{$row['mudel']} </strong> <br/>omadused: {$row['omadused']} <br/>hinnaga: <i> {$row['hind']} </i>. <br/>"; 
-	
-
+	echo '<div style = "max-width: 200px; float: left; padding: 20px;">';
+	echo '<img src="' . $row['pilt'] . '"  height = "150px"; width = "200px">'."	<br/> Motoratta tyyb: <strong>{$row['mudel']} </strong><br/> <br/>Omadused: <br/>{$row['omadused']} <br/><br/> Hind : <i> {$row['hind']} </i>. <br/>"; 
+	echo '</div>';
+	/*echo '<div style = " position: fixed; bottom: 0px; ">';
+	include_once("vaaded/foot.html");
+	echo '</div>';*/
 
 		//ЗАПОЛНИМ ТАБЛИЦУ ДЛЯ УДОБСТВА
-	echo '<table>';
+	/*echo '<table>';
 	echo '<tr><th>title</td><td>price</td><td>number</td></tr>';
 	while ($row = mysqli_fetch_assoc($result))  {
 
@@ -116,12 +118,12 @@ foreach($_POST['check_list'] as $selected){
 	    echo '</tr>';
 	}
 	echo '</table>';
-					}	
+					}	*/
 				}
 			}
-	include_once("vaaded/foot.html");
+	
 	}
-}
+}}
 function alusta_sessioon(){
 	// siin ees võiks muuta ka sessiooni kehtivusaega, aga see pole hetkel tähtis
 	session_start();

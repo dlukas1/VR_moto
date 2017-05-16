@@ -1,3 +1,4 @@
+
 <?php
 
 require_once("vaaded/functions.php");
@@ -49,7 +50,8 @@ switch($page){
 			break;
 	case "vorreldus":
 		kuva_vorreldus();
-		echo "tetete";
+		
+
 			break;
 	default:
 	kuva_pealeht();
