@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-	<title>Praktikum</title>
+	<title>VR moto</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
@@ -12,8 +12,24 @@
 		<li><a href="?">Pealeht</a></li>
 		<li><a href="?page=galerii">Galerii</a></li>
 		<li><a href="?page=vordle">Võrdle</a></li>
+		<?php
+				if ((!empty($_SESSION['user']) && $_SESSION['roll']=="admin")):?>
+				<li><a href="?mode=lisa">Lisa oma motorattas!</a></li>
+				<a href="?mode=logout">Logout</a>
+		<?php endif; ?>
 	</ul>
 </div>
+
+
+
+
+<!--$_SESSION['user']='Boss';
+			$_SESSION['roll']='admin';
+
+<?php if (!empty($_SESSION['user']) && $_SESSION['user']=="admin"):?>
+			<li><a href="?mode=lisa">Lisa</a></li>
+
+		<?php endif; ?>-->
 
 
 <div class="head">

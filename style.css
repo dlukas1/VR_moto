@@ -1,6 +1,7 @@
 body {	background-color: orange;	}
 
 		.head{background-color: #ffcc99; padding: 5px; margin: 5px; text-align: center;}
+	
 		
 		#logo { border: none; text-align: left; }
 		#valgejust { text-align: justify; font-size: 120%; }

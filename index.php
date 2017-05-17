@@ -2,7 +2,7 @@
 <?php
 
 require_once("vaaded/functions.php");
-alusta_sessioon(); 
+session_start(); 
 
 $pildid = array(
 		1=>array('src'=>"motothumb/cross.jpg", 		'alt'=>"cross", 	'url'=>'motot/cross.html'),
@@ -25,8 +25,11 @@ switch($page){
 		kuva_vordle();
 			break;
 	case  "login":
-		fake_login();
+		login();
 		break;
+	case "logout":
+		logout();
+	break;	
 	case 'register':
 		kuva_register();
 			break;
@@ -50,9 +53,9 @@ switch($page){
 			break;
 	case "vorreldus":
 		kuva_vorreldus();
-		
-
 			break;
+
+
 	default:
 	kuva_pealeht();
 }

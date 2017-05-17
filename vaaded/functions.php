@@ -1,4 +1,15 @@
 <?php
+
+function SQLconnect(){
+global $link; //nam ona ponadobitsja dalee
+$user = 'root';
+$pass = "";
+$db = 'test';
+$host = 'localhost';
+$link = mysqli_connect($host, $user, $pass, $db) or die ("ei saa yhendada");
+mysqli_query ($link, "SET CHARACTER SET UTF8") or die ( $sql. " - " . mysql_error($link));
+}
+
 function kuva_galerii (){
 	include_once("vaaded/head.html");
 	include("vaaded/galerii.html");
@@ -23,23 +34,34 @@ function kuva_login(){
 		}
 };
 
-function fake_login(){
-	if (!empty($_GET["roll"])) {
-		if ($_GET["roll"]=="admin"){
-			$_SESSION["user"]="Boss";
-			$_SESSION["roll"]="admin";
+function login(){
+	if (!empty($_POST['login'])) {
+		if (($_POST['login']=='admin') && ($_POST['pass']=='admin'))
+		{
+			$_SESSION['user']='Boss';
+			$_SESSION['roll']='admin';
 			$_SESSION["user_id"]=1;
-		} else {
+		} 
+		/*else {
 			$_SESSION["user"]="Treener1";
 			$_SESSION["roll"]="kasutaja";
 			$_SESSION["user_id"]=2;
-		}
-		header("Location: ?mode=loomaaed");
+		}*/
+		header("Location: ?mode=pealeht");
 	}
 	include_once("vaaded/head.html");
 	include_once("vaaded/login.html");
 	include_once("vaaded/foot.html");
 }
+
+function logout(){
+	$_SESSION=array();
+	session_destroy();
+	unset($_SESSION['user']);
+	unset($_SESSION['roll']);
+	header("Location: ?");
+}
+
 function kuva_pealeht(){
 	include_once("vaaded/head.html");
 	include("vaaded/pealeht.html");
@@ -99,33 +121,17 @@ foreach($_POST['check_list'] as $selected){
 		{//$img = <img src = '$row['pilt']'>;
 
 		//вывод полученного 
-	echo '<div style = "max-width: 200px; float: left; padding: 20px;">';
-	echo '<img src="' . $row['pilt'] . '"  height = "150px"; width = "200px">'."	<br/> Motoratta tyyb: <strong>{$row['mudel']} </strong><br/> <br/>Omadused: <br/>{$row['omadused']} <br/><br/> Hind : <i> {$row['hind']} </i>. <br/>"; 
+	echo '<div style = "max-width: 200px; float: left; padding: 50px;">';
+	echo '<img src="' . $row['pilt'] . '"  height = "150px";">'."	<br/> Motoratta tyyb: <strong>{$row['mudel']} </strong><br/> <br/>Omadused: <br/>{$row['omadused']} <br/><br/> Hind : <i> {$row['hind']} </i>. <br/>"; 
 	echo '</div>';
-	/*echo '<div style = " position: fixed; bottom: 0px; ">';
-	include_once("vaaded/foot.html");
-	echo '</div>';*/
 
-		//ЗАПОЛНИМ ТАБЛИЦУ ДЛЯ УДОБСТВА
-	/*echo '<table>';
-	echo '<tr><th>title</td><td>price</td><td>number</td></tr>';
-	while ($row = mysqli_fetch_assoc($result))  {
-
-	    echo '<tr>';
-	    	echo 'mudelee';
-	    	echo 'eededede';
-	    	echo 'ggtgtthy';
-	    echo '</tr>';
-	}
-	echo '</table>';
-					}	*/
 				}
 			}
 	
 	}
 }}
 function alusta_sessioon(){
-	// siin ees võiks muuta ka sessiooni kehtivusaega, aga see pole hetkel tähtis
+	// siin ees võiks muuta ka sessiooni kehtivusaega
 	session_start();
 	}
 	
