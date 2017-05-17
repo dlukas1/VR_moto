@@ -54,6 +54,9 @@ switch($page){
 	case "vorreldus":
 		kuva_vorreldus();
 			break;
+	case 'lisa':
+		lisa();
+		break;
 
 
 	default:

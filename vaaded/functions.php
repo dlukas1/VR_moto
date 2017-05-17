@@ -1,13 +1,13 @@
 <?php
 
-function SQLconnect(){
+function SQLconnect()
+{
 global $link; //nam ona ponadobitsja dalee
 $user = 'root';
 $pass = "";
 $db = 'test';
 $host = 'localhost';
 $link = mysqli_connect($host, $user, $pass, $db) or die ("ei saa yhendada");
-mysqli_query ($link, "SET CHARACTER SET UTF8") or die ( $sql. " - " . mysql_error($link));
 }
 
 function kuva_galerii (){
@@ -102,6 +102,11 @@ function kuva_touring(){
 	include("motot/touring.html");
 	include_once("vaaded/foot.html");
 };
+function lisa(){
+	include_once("vaaded/head.html");
+	include_once("vaaded/lisa.html");
+	include_once("vaaded/foot.html");
+}
 
 function kuva_vorreldus()
 	{	$user = "root";
@@ -129,7 +134,7 @@ foreach($_POST['check_list'] as $selected){
 			}
 	
 	}
-}}
+}};
 function alusta_sessioon(){
 	// siin ees võiks muuta ka sessiooni kehtivusaega
 	session_start();
