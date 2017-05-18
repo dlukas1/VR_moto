@@ -12,11 +12,28 @@
 		<li><a href="?">Pealeht</a></li>
 		<li><a href="?page=galerii">Galerii</a></li>
 		<li><a href="?page=vordle">Võrdle</a></li>
-		<?php
-				if ((!empty($_SESSION['user']) && $_SESSION['roll']=="admin")):?>
-				<li><a href="?page=lisa">Lisa oma motorattas!</a></li>
+		<?php if ((!empty($_SESSION['user']) && $_SESSION['roll']=="admin")):?>
+				<li><a href="?page=lisa">Lisa uus motorattas </a></li>
+				<li><a href="?page=komment">Jata kommentaar </a></li>
 				<a href="?page=logout">Logout</a>
+				<div style="float: right">Hello, admin! </div> 
+				<style type="text/css">
+					.hide {visibility: hidden;}
+				</style>
+		<?php elseif ((!empty($_SESSION['user']) && $_SESSION['roll']=="user")):?>
+			
+			<li><a href="?page=komment">Jata kommentaar </a></li>
+			<a href="?page=logout">Logout</a>
+				<div style="float: right">Hello, user! </div> 
+				<style type="text/css">
+					.hide {visibility: hidden;}
+				</style>
+
 		<?php endif; ?>
+
+
+
+
 	</ul>
 </div>
 
@@ -34,7 +51,7 @@
 
 <div class="head">
 	<img src="motopics/ed.jpg" id="logo" height="200" width="1000">
-	<a href="?page=login">Log In  </a>  / <a href="?page=register"> Register</a> 
+	<a href="?page=login" class="hide">Log In  </a>     &nbsp;  <a href="?page=register" class="hide"> Register</a> 
 </div>
 
 <div id="header">

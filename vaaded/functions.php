@@ -35,18 +35,20 @@ function kuva_login(){
 };
 
 function login(){
-	if (!empty($_POST['login'])) {
+	//tavakasutaja saab kommenteerida, admin - lisama/kustutama
+	if (!empty($_POST['login'])) 
+		{
 		if (($_POST['login']=='admin') && ($_POST['pass']=='admin'))
 		{
 			$_SESSION['user']='Boss';
 			$_SESSION['roll']='admin';
 			$_SESSION["user_id"]=1;
 		} 
-		/*else {
-			$_SESSION["user"]="Treener1";
-			$_SESSION["roll"]="kasutaja";
+		elseif (($_POST['login']=='user') && ($_POST['pass']=='user')) {
+			$_SESSION['user']='user';
+			$_SESSION['roll']='user';
 			$_SESSION["user_id"]=2;
-		}*/
+		}
 		header("Location: ?mode=pealeht");
 	}
 	include_once("vaaded/head.html");
@@ -103,8 +105,41 @@ function kuva_touring(){
 	include_once("vaaded/foot.html");
 };
 function lisa(){
+
+	global $link;
+	if ( empty($_SESSION["roll"]) || (!empty($_SESSION["roll"]) && $_SESSION["roll"]!="admin"))
+	{ //ainult admin
+		header("Location: ?page=login");
+	}
+	$errors=array();
+	if (!empty($_POST)){
+		if (empty($_POST["mudel"])) {$errors[]="mudel kohustuslik";}
+		if (empty($_POST["kiri"])) {$errors[]="kirjeldus kohustuslik";}
+		if (empty($_POST["hind"])) {
+			$errors[]="hind kohustuslikud";
+		}
+		if (empty($_POST["pilt"])) {
+			$errors[]="pilt kohustuslik";
+		}
+		if (empty($errors)){
+			//siin sisestada andmed 
+			$mudel = mysqli_real_escape_string ($link, $_POST["mudel"]);
+			$kiri = mysqli_real_escape_string ($link, $_POST["kiri"]);
+			$hind = mysqli_real_escape_string ($link, $_POST["hind"]);
+			$pilt = mysqli_real_escape_string ($link, $_POST["pilt"]);
+			
+
+			$sql = "INSERT INTO 'dlukas_moto' ( `mudel`, `omadused`, `hind`, `pilt`) VALUES ('$mudel' ,'$kiri', '$hind', '$pilt')";
+			$result = mysqli_query ($link, $sql) or die ("Eba6nestus");
+			if($result){
+				header("Location: ?mode=vordle");
+			}
+
+		}
+	}
+
 	include_once("vaaded/head.html");
-	include_once("vaaded/lisa.html");
+	include("vaaded/lisa.html");
 	include_once("vaaded/foot.html");
 }
 
