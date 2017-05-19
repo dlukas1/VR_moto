@@ -1,3 +1,4 @@
+//enos ok
 CREATE TABLE dlukas_moto (
 	id integer PRIMARY KEY AUTO_INCREMENT, 
 	mudel varchar (100),
@@ -6,6 +7,7 @@ CREATE TABLE dlukas_moto (
 	pilt varchar(200)
 )
 
+//enos ok
 INSERT INTO dlukas_moto (mudel, omadused, hind, pilt) VALUES 
 ('Cross', ' Võimsus 50 - 650cc, kerge ja äge, saab metsas hüppama ja võistlusel osaleda ', ' Uus alates 8000, kasutatud alates 2000 ', 'motopics/cross.jpg'),
 ('Cruiser', ' Võimas mootor, raske, soobib maantel sõitmiseks ja linnas oled nähtav ', ' Uus alates 10000, hea kasutatud saab osta alates 4000 ', 'motopics/cruiser.jpg'),
@@ -13,4 +15,12 @@ INSERT INTO dlukas_moto (mudel, omadused, hind, pilt) VALUES
 ('Naked', ' Kõige levinumad motorattad, soovitav esimesena rattana. Lihtne juhtimine ja silmapaistav vaade ',' Uus alates 7000, kasutatud alates 1000 ', 'motopics/naked.jpg' ),
 ('Sport', ' Tahad tundma ennast rakeetina? Siis võta sport bike! Aga pea meeles: et sellega ohutu sõitma on vaja palju harjutama! ', 'Uus alates 9000, kasutatud alates 1500', 'motopics/sport.jpg'),
 ('Touring', 'Kui meeldivad pikkad reisid - võta touring. See on raske, hästi hoiab teed ja kõige mugavam motorattas ', 'Uus alates 12000, kasutatud alates 3000', 'motopics/touring.jpg')
+
+//Enos ok
+CREATE TABLE dlukas_comments (
+	id integer PRIMARY KEY AUTO_INCREMENT, 
+	nimi varchar(100),
+	email varchar(200),
+	comment varchar(10000)
+)
 

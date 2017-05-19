@@ -58,11 +58,8 @@
 	}
 
 //Lisame andmebaasi-algus
-	$user = "root";
-	$pass = "";
-	$db = "test";
-	$host = "localhost";
-	$link = mysqli_connect($host, $user, $pass, $db) or die ("ei saa yhendada");
+	include_once ("vaaded/functions.php");
+	global $link;
 	if (isset($mudel)&&isset($kiri)&&isset($hind)&&isset($pilt)) {
 		$sql = "INSERT INTO dlukas_moto (mudel, omadused, hind, pilt) VALUES  ('$mudel','$kiri','$hind','$pilt')";
 			$result = mysqli_query($link, $sql) or die ("Eba6nestus".mysqli_error($link));

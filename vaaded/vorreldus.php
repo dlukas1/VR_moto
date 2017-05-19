@@ -1,11 +1,8 @@
 <?php
 
-	$user = "root";
-		$pass = "";
-		$db = "test";
-		$host = "localhost";
-		$link = mysqli_connect($host, $user,$pass, $db) or die("ei saanudühendatud - " . mysqli_error());
-		include_once("vaaded/head.html");
+	include_once ("vaaded/functions.php");
+	global $link;
+	include_once("vaaded/head.html");
 
 if(isset($_POST['submit'])){//to run PHP script on submit
 if(!empty($_POST['check_list'])){

@@ -1,14 +1,13 @@
 <?php
 
-function SQLconnect()
-{
+
 global $link; //nam ona ponadobitsja dalee
 $user = 'root';
 $pass = "";
 $db = 'test';
 $host = 'localhost';
 $link = mysqli_connect($host, $user, $pass, $db) or die ("ei saa yhendada");
-}
+
 
 function kuva_galerii (){
 	include_once("vaaded/head.html");

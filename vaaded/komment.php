@@ -6,13 +6,15 @@ Comment: <textarea name="comment" rows="5" cols="40"></textarea>
 </form>
 
 <?php
+include_once ("vaaded/functions.php");
+global $link;
 
 //ustanovim svjaz s bazoj dannih
-$user = "root";
+/*$user = "root";
 $pass = "";
 $db = "test";
 $host = "localhost";
-$link = mysqli_connect($host, $user,$pass, $db) or die("ei saanudühendatud - " . mysqli_error());
+$link = mysqli_connect($host, $user,$pass, $db) or die("ei saanudühendatud - " . mysqli_error());*/
 
 //Et kuvama kommentid
 $queryS = "SELECT nimi, email, comment FROM dlukas_comments";
@@ -33,9 +35,12 @@ $query = "INSERT INTO dlukas_comments(nimi, email, comment) VALUES ('$name', '$e
 	//osushestvlajem zapros k baze dannih
 $result = mysqli_query($link, $query) or die("$query - ".mysqli_error($link));
 	//kontroll kas komment on salvestatud
-if ($result = 'true'){echo "komment salvestatud";}	else 	{echo "kommenteerimine eba6nnestus";}
+if ($result ){echo "komment salvestatud";
+			header("Location: ?page=komment");
+			unset($_POST); 
+			}	else 	{echo "kommenteerimine eba6nnestus";}
 	// 4istim massiv $_POST
-unset($_POST); 
+		
 	
 	}
 ?>
@@ -46,13 +51,13 @@ unset($_POST);
 	<p><input type="submit" name="Kustuta" value="Kustuta"></p>
 		<?php 
 			if (isset($_POST['Kustuta'])) {
-				$user = "root";
-				$pass = "";
-				$db = "test";
-				$host = "localhost";
-				$link = mysqli_connect($host, $user,$pass, $db) or die("ei saanudühendatud - " . mysqli_error());
+				include_once ("vaaded/functions.php");
+				global $link;
 				$queryErase = "DELETE FROM dlukas_comments";
 				$erase = mysqli_query($link, $queryErase) or die("Ei saa kustutada");
+				if ($erase) {
+					header("Location: ?page=komment");
+				}
 			}
 		?>
 </form>
