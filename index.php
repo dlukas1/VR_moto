@@ -27,6 +27,9 @@ switch($page){
 	case  "login":
 		login();
 		break;
+	case "komment";
+		komment();
+		break;
 	case "logout":
 		logout();
 	break;	

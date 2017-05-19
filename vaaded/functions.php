@@ -56,6 +56,12 @@ function login(){
 	include_once("vaaded/foot.html");
 }
 
+function komment (){
+	include_once("vaaded/head.html");
+	include("vaaded/komment.php");
+	include_once("vaaded/foot.html");
+}
+
 function logout(){
 	$_SESSION=array();
 	session_destroy();
