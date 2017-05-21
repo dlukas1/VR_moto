@@ -1,17 +1,44 @@
 
-<form action="/login_form.html" method="post">
+<!--Форма для регистрации нового пользователя-->
+<form method="post">
 	Kasutajanimi : <br>
 	<input type="text" name="fn" placeholder="Mickey"> <br>
+	E-mail : <br>
+	<input type="text" name="email" placeholder="Mickey"> <br>
 	Parool : <br>
 	<input type="password" name="password" placeholder="xxx"><br>
-
 	Parool veel kord : <br>
-	<input type="password" name="password" placeholder="xxx"><br><br>
-
-
-
+	<input type="password" name="password2" placeholder="xxx"><br><br>
 	<input type="submit" name="Registreeri">
-
-
 </form>
 
+
+<?php
+//Получаем значения с формы
+if (isset($_POST['Registreeri']) && !empty($_POST['fn']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['password2'])) {
+	$new_user = htmlspecialchars($_POST['fn']);
+	$new_email = htmlspecialchars($_POST['email']);
+	if ($_POST['password'] == $_POST['password2']) {
+		$new_pwd = $_POST['password'];
+	} else {
+		echo "Paroolid ei klappi, proovi uuesti!";
+	}
+}
+
+//код для добавления нового поьлзователя
+include_once ("functions.php");
+	global $link;
+
+	if (isset($new_user)&&isset($new_email)&&isset($new_pwd)) {
+		//$new_pwd1 = password_hash($new_pwd, PASSWORD_DEFAULT);
+		$sql = "INSERT INTO dlukas_users (login, email, pass) VALUES  ('$new_user', '$new_email', '$new_pwd)')";
+			$result = mysqli_query($link, $sql) or die ("Eba6nestus".mysqli_error($link));
+			if($result) {				
+				echo "Uus kasutaja lisatud!"."<br/>";			
+			} 
+		}
+			
+
+
+
+?>

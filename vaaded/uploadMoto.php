@@ -48,25 +48,21 @@
 	} else {
 	    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 	        echo "Sinu pilt ". basename( $_FILES["fileToUpload"]["name"]). " on salvestatud.";
-	        
-
-
-	        
 	    } else {
 	        echo "Sorry, there was an error uploading your file.";
 	    }
 	}
 
 //Lisame andmebaasi-algus
-	include_once ("vaaded/functions.php");
+	include_once ("functions.php");
 	global $link;
 	if (isset($mudel)&&isset($kiri)&&isset($hind)&&isset($pilt)) {
 		$sql = "INSERT INTO dlukas_moto (mudel, omadused, hind, pilt) VALUES  ('$mudel','$kiri','$hind','$pilt')";
 			$result = mysqli_query($link, $sql) or die ("Eba6nestus".mysqli_error($link));
-			if($result) {
+			if($result) {				
+				echo "Andmed salvestatud andmebaasile"."<br/>";
 				
-				echo "Andmed salvestatud"."<br/>";
-			}
+			} 
 		}
 			
 	

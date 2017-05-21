@@ -24,7 +24,7 @@ function kuva_login(){
 	if (isset($_POST['fn']) && $_POST['fn']!="" && isset($_POST['password']) && $_POST['password']!=""){
 		$username=htmlspecialchars($_POST['fn']);
 		$username=htmlspecialchars($_POST['password']);
-		header("Location: http://ya.ru/");
+		
 		} 
 	else {
 		include_once("vaaded/head.html");
@@ -42,12 +42,26 @@ function login(){
 			$_SESSION['user']='Boss';
 			$_SESSION['roll']='admin';
 			$_SESSION["user_id"]=1;
-		} 
-		elseif (($_POST['login']=='user') && ($_POST['pass']=='user')) {
-			$_SESSION['user']='user';
-			$_SESSION['roll']='user';
-			$_SESSION["user_id"]=2;
-		}
+		} //для юзера сделать запрос из базы данных с проверкой
+			global $link;
+			if (isset($_POST['login']) && isset($_POST['pass']) &&!empty($_POST['login'])&& !empty($_POST['pass'])) {
+				$checkuser = htmlspecialchars($_POST['login']);
+				$checkpwd = htmlspecialchars($_POST['pass']);
+				$check = "SELECT login, email, pass FROM dlukas_users WHERE login='$checkuser'";
+				$userinfo = mysqli_query($link, $check) or die("$check - ".mysqli_error($link));
+				$checkrow = mysqli_fetch_assoc($userinfo);
+				$hash = $checkrow['pass'];
+				
+				if ($checkpwd==$hash) 
+				{
+				$_SESSION['user']=$checkuser;
+				$_SESSION['roll']='user';
+				$_SESSION["user_id"]=2;
+				}
+			}
+
+
+
 		header("Location: ?mode=pealeht");
 	}
 	include_once("vaaded/head.html");

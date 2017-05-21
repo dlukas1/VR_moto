@@ -24,3 +24,10 @@ CREATE TABLE dlukas_comments (
 	comment varchar(10000)
 )
 
+CREATE TABLE dlukas_users (
+	id integer PRIMARY KEY AUTO_INCREMENT, 
+	login varchar (100),
+	email varchar(100),
+	pass varchar(100)
+)
+
