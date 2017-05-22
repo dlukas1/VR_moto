@@ -9,12 +9,7 @@ Comment: <textarea name="comment" rows="5" cols="40"></textarea>
 include_once ("vaaded/functions.php");
 global $link;
 
-//ustanovim svjaz s bazoj dannih
-/*$user = "root";
-$pass = "";
-$db = "test";
-$host = "localhost";
-$link = mysqli_connect($host, $user,$pass, $db) or die("ei saanudühendatud - " . mysqli_error());*/
+
 
 //Et kuvama kommentid
 $queryS = "SELECT nimi, email, comment FROM dlukas_comments";

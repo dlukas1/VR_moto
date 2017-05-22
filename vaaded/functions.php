@@ -2,8 +2,8 @@
 
 
 global $link; //nam ona ponadobitsja dalee
-$user = 'root';
-$pass = "";
+$user = 'root';//$user = 'test'
+$pass = "";//$pass = "t3st3r123";
 $db = 'test';
 $host = 'localhost';
 $link = mysqli_connect($host, $user, $pass, $db) or die ("ei saa yhendada");
@@ -46,23 +46,20 @@ function login(){
 			global $link;
 			if (isset($_POST['login']) && isset($_POST['pass']) &&!empty($_POST['login'])&& !empty($_POST['pass'])) {
 				$checkuser = htmlspecialchars($_POST['login']);
-				$checkpwd = htmlspecialchars($_POST['pass']);
+				$checkpwd = htmlspecialchars($_POST['pass']);//polu4ennij parol
 				$check = "SELECT login, email, pass FROM dlukas_users WHERE login='$checkuser'";
 				$userinfo = mysqli_query($link, $check) or die("$check - ".mysqli_error($link));
-				$checkrow = mysqli_fetch_assoc($userinfo);
-				$hash = $checkrow['pass'];
+				$checkrow = mysqli_fetch_assoc($userinfo);//$checkrow - massiv s dannimi iz bazi dannih
 				
-				if ($checkpwd==$hash) 
+				if (sha1($checkpwd).")"==$checkrow['pass'])
+
 				{
 				$_SESSION['user']=$checkuser;
 				$_SESSION['roll']='user';
 				$_SESSION["user_id"]=2;
 				}
 			}
-
-
-
-		header("Location: ?mode=pealeht");
+		//header("Location: ?mode=pealeht");
 	}
 	include_once("vaaded/head.html");
 	include_once("vaaded/login.html");
@@ -163,18 +160,16 @@ function lisa(){
 }
 
 function kuva_vorreldus()
-	{	$user = "root";
-		$pass = "";
-		$db = "test";
-		$host = "localhost";
-		$link = mysqli_connect($host, $user,$pass, $db) or die("ei saanudühendatud - " . mysqli_error());
+	{	global $link;
 		include_once("vaaded/head.html");
 
+
 if(isset($_POST['submit'])){//to run PHP script on submit
-if(!empty($_POST['check_list'])){
+if(!empty($_POST['name'])){
+	echo($_POST['name']);
 			// Loop to store and display values of individual checked checkbox.
-foreach($_POST['check_list'] as $selected){
-		$query = "SELECT mudel, omadused, hind, pilt FROM dlukas_moto  WHERE id = $selected";
+foreach($_POST['name'] as $selected){
+		$query = "SELECT mudel, omadused, hind, pilt FROM dlukas_moto  WHERE mudel = $selected";
 		$result = mysqli_query($link, $query) or die("$query - ".mysqli_error($link));
 		while ($row = mysqli_fetch_assoc($result)) 
 		{//$img = <img src = '$row['pilt']'>;
@@ -187,6 +182,9 @@ foreach($_POST['check_list'] as $selected){
 				}
 			}
 	
+	}
+	else {
+		echo "Empty!";
 	}
 }};
 function alusta_sessioon(){

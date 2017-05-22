@@ -23,7 +23,7 @@ CREATE TABLE dlukas_comments (
 	email varchar(200),
 	comment varchar(10000)
 )
-
+//enos ok
 CREATE TABLE dlukas_users (
 	id integer PRIMARY KEY AUTO_INCREMENT, 
 	login varchar (100),

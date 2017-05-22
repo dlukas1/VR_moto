@@ -18,7 +18,7 @@
 if (isset($_POST['Registreeri']) && !empty($_POST['fn']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['password2'])) {
 	$new_user = htmlspecialchars($_POST['fn']);
 	$new_email = htmlspecialchars($_POST['email']);
-	if ($_POST['password'] == $_POST['password2']) {
+	if ($_POST['password'] == $_POST['password2']) {//проверяем чтобы пароли совпадали
 		$new_pwd = $_POST['password'];
 	} else {
 		echo "Paroolid ei klappi, proovi uuesti!";
@@ -28,16 +28,20 @@ if (isset($_POST['Registreeri']) && !empty($_POST['fn']) && !empty($_POST['email
 //код для добавления нового поьлзователя
 include_once ("functions.php");
 	global $link;
-
-	if (isset($new_user)&&isset($new_email)&&isset($new_pwd)) {
-		//$new_pwd1 = password_hash($new_pwd, PASSWORD_DEFAULT);
-		$sql = "INSERT INTO dlukas_users (login, email, pass) VALUES  ('$new_user', '$new_email', '$new_pwd)')";
-			$result = mysqli_query($link, $sql) or die ("Eba6nestus".mysqli_error($link));
-			if($result) {				
-				echo "Uus kasutaja lisatud!"."<br/>";			
-			} 
+		//проверка есть ли юзер с таким именем в базе 
+	$checkname = mysqli_query($link, "SELECT login FROM dlukas_users WHERE login = '$new_user' ");
+		if (mysqli_num_rows($checkname) > 0) {echo "Selline kasutaja juba registreerinud!";}//если есть
+		else {//если нет
+			if (isset($new_user)&&isset($new_email)&&isset($new_pwd)) 
+			{
+			$new_pwd1 = sha1($new_pwd);		
+			$sql = "INSERT INTO dlukas_users (login, email, pass) VALUES  ('$new_user', '$new_email', '$new_pwd1)')";
+			$result = mysqli_query($link, $sql) or die ("Eba6nestus".mysqli_error($link));		
+			if($result) {	echo "Uus kasutaja lisatud!"."<br/>";	}
+			}
 		}
-			
+	
+	
 
 
 
