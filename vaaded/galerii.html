@@ -1,6 +1,21 @@
 
 <h3>Motorattade Galerii (CSS animation included)</h3>
 
-<div id="anime">
+<div id="anime"></div><br>
 
-</div>
+<h3>Kasutajate motorattad: </h3>
+<?php
+include_once ("vaaded/functions.php");
+global $link;
+
+$queryS = "SELECT id, mudel, omadused, hind, pilt FROM dlukas_moto WHERE id > 6";
+$comlist = mysqli_query($link, $queryS) or die("$query - ".mysqli_error($link));
+
+	//poka mysqli_fetch_assoc daet zna4enija - cikl piwet dannie massiva
+while ($row = mysqli_fetch_assoc($comlist)) {
+	echo "<br/> Mudel: <strong>{$row['mudel']}; </strong> omadused: {$row['omadused']}; hind: <i> {$row['hind']} </i>. <br/>". '<img src="' .$row['pilt']. '"  height = "150px";"><br/>';}
+
+
+	?>
+
+	<a href=""></a>

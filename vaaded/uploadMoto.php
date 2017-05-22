@@ -61,6 +61,7 @@
 			$result = mysqli_query($link, $sql) or die ("Eba6nestus".mysqli_error($link));
 			if($result) {				
 				echo "Andmed salvestatud andmebaasile"."<br/>";
+			
 				
 			} 
 		}

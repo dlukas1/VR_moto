@@ -33,6 +33,7 @@ $result = mysqli_query($link, $query) or die("$query - ".mysqli_error($link));
 if ($result ){echo "komment salvestatud";
 			header("Location: ?page=komment");
 			unset($_POST); 
+			
 			}	else 	{echo "kommenteerimine eba6nnestus";}
 	// 4istim massiv $_POST
 		

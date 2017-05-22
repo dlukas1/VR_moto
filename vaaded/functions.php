@@ -2,8 +2,8 @@
 
 
 global $link; //nam ona ponadobitsja dalee
-$user = 'root';//$user = 'test'
-$pass = "";//$pass = "t3st3r123";
+$user = 'test';//$user = 'test'
+$pass = "t3st3r123";//$pass = "t3st3r123";
 $db = 'test';
 $host = 'localhost';
 $link = mysqli_connect($host, $user, $pass, $db) or die ("ei saa yhendada");
@@ -149,6 +149,7 @@ function lisa(){
 			$result = mysqli_query ($link, $sql) or die ("Eba6nestus");
 			if($result){
 				header("Location: ?mode=vordle");
+				
 			}
 
 		}
@@ -163,13 +164,11 @@ function kuva_vorreldus()
 	{	global $link;
 		include_once("vaaded/head.html");
 
-
 if(isset($_POST['submit'])){//to run PHP script on submit
-if(!empty($_POST['name'])){
-	echo($_POST['name']);
+if(!empty($_POST['check_list'])){
 			// Loop to store and display values of individual checked checkbox.
-foreach($_POST['name'] as $selected){
-		$query = "SELECT mudel, omadused, hind, pilt FROM dlukas_moto  WHERE mudel = $selected";
+foreach($_POST['check_list'] as $selected){
+		$query = "SELECT mudel, omadused, hind, pilt FROM dlukas_moto  WHERE id = $selected";
 		$result = mysqli_query($link, $query) or die("$query - ".mysqli_error($link));
 		while ($row = mysqli_fetch_assoc($result)) 
 		{//$img = <img src = '$row['pilt']'>;
@@ -181,16 +180,11 @@ foreach($_POST['name'] as $selected){
 
 				}
 			}
+			
 	
 	}
-	else {
-		echo "Empty!";
-	}
-}};
-function alusta_sessioon(){
-	// siin ees võiks muuta ka sessiooni kehtivusaega
-	session_start();
-	}
+}}
+
 	
 function lopeta_sessioon(){
 	$_SESSION = array();
