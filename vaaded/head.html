@@ -12,7 +12,8 @@
 		<li><a href="?">Pealeht</a></li>
 		<li><a href="?page=galerii">Galerii</a></li>
 		<li><a href="?page=vordle">Võrdle</a></li>
-		<?php if ((!empty($_SESSION['user']) && $_SESSION['roll']=="admin")):?>
+		
+		<?php if ((!empty($_SESSION['user']) && !empty($_SESSION['roll']) && $_SESSION['roll']=="admin")):?>
 				<li><a href="?page=lisa">Lisa uus motorattas </a></li>
 				<li><a href="?page=komment">Jata kommentaar </a></li>
 				<a href="?page=logout">Logout</a>
@@ -20,8 +21,8 @@
 				<style type="text/css">
 					.hide {visibility: hidden;}
 				</style>
-		<?php elseif ((!empty($_SESSION['user']) && $_SESSION['roll']=="user")):?>
-			
+		<?php elseif ((!empty($_SESSION['user']) && !empty($_SESSION['roll']) && $_SESSION['roll']=="user")):?>
+			<li><a href="?page=lisa">Lisa uus motorattas </a></li>
 			<li><a href="?page=komment">Jata kommentaar </a></li>
 			<a href="?page=logout">Logout</a>
 				<div style="float: right">Hello, <?php echo $_SESSION['user'] ?> </div> 
@@ -34,8 +35,10 @@
 
 
 
+
 	</ul>
 </div>
+
 
 
 
@@ -48,11 +51,11 @@
 
 		<?php endif; ?>-->
 
-
 <div class="head">
 	<img src="motopics/ed.jpg" id="logo" height="200" width="1000">
 	<a href="?page=login" class="hide">Log In  </a>     &nbsp;  <a href="?page=register" class="hide"> Register</a> 
 </div>
+
 
 <div id="header">
 	<ul>

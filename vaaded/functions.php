@@ -42,7 +42,10 @@ function login(){
 			$_SESSION['user']='Boss';
 			$_SESSION['roll']='admin';
 			$_SESSION["user_id"]=1;
+			header("Location: ?mode=pealeht");
 		} //для юзера сделать запрос из базы данных с проверкой
+
+		else {
 			global $link;
 			if (isset($_POST['login']) && isset($_POST['pass']) &&!empty($_POST['login'])&& !empty($_POST['pass'])) {
 				$checkuser = htmlspecialchars($_POST['login']);
@@ -50,6 +53,7 @@ function login(){
 				$check = "SELECT login, email, pass FROM dlukas_users WHERE login='$checkuser'";
 				$userinfo = mysqli_query($link, $check) or die("$check - ".mysqli_error($link));
 				$checkrow = mysqli_fetch_assoc($userinfo);//$checkrow - massiv s dannimi iz bazi dannih
+
 				
 				if (sha1($checkpwd).")"==$checkrow['pass'])
 
@@ -57,8 +61,16 @@ function login(){
 				$_SESSION['user']=$checkuser;
 				$_SESSION['roll']='user';
 				$_SESSION["user_id"]=2;
+				$_SESSION['email']=$checkrow['email'];
+				header("Location: ?mode=pealeht");
+				}	else {
+					echo "Sellist kasutajat ei ole!";
+					
+
 				}
 			}
+		}
+			
 		//header("Location: ?mode=pealeht");
 	}
 	include_once("vaaded/head.html");
@@ -123,10 +135,8 @@ function kuva_touring(){
 function lisa(){
 
 	global $link;
-	if ( empty($_SESSION["roll"]) || (!empty($_SESSION["roll"]) && $_SESSION["roll"]!="admin"))
-	{ //ainult admin
-		header("Location: ?page=login");
-	}
+
+	
 	$errors=array();
 	if (!empty($_POST)){
 		if (empty($_POST["mudel"])) {$errors[]="mudel kohustuslik";}
@@ -183,7 +193,8 @@ foreach($_POST['check_list'] as $selected){
 			
 	
 	}
-}}
+}
+}
 
 	
 function lopeta_sessioon(){

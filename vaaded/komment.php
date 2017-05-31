@@ -1,6 +1,7 @@
 <form method="post"> 
-Name: <input type="text" name="name"><br><br>
+Name: <input type="text" name="name" value="<?php echo $_SESSION['user']; ?>">  <br><br>
 E-mail: <input type="text" name="email"><br><br>
+
 Comment: <textarea name="comment" rows="5" cols="40"></textarea>
 <p><input type="submit"></p>
 </form>
@@ -19,7 +20,7 @@ $comlist = mysqli_query($link, $queryS) or die("$query - ".mysqli_error($link));
 while ($row = mysqli_fetch_assoc($comlist)) {
 	echo "<br/> Kasutaja <strong>{$row['nimi']} </strong>e-mailiga {$row['email']} on jaanud komment: <i> {$row['comment']} </i>. <br/>";}
 
-if(isset($_POST['name']) && isset ($_POST['email']) && isset ($_POST['comment']) && !empty ($_POST['comment']))
+if(isset($_POST['name']) && isset ($_POST['email']) && !empty ($_POST['email']) && isset ($_POST['comment']) && !empty ($_POST['comment']))
 {
 	$name = htmlspecialchars($_POST['name']) ;
 	$email = htmlspecialchars($_POST['email']) ;

@@ -62,6 +62,7 @@
 			if($result) {				
 				echo "Andmed salvestatud andmebaasile"."<br/>";
 			
+			
 				
 			} 
 		}

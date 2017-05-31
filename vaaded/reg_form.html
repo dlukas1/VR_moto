@@ -4,7 +4,7 @@
 	Kasutajanimi : <br>
 	<input type="text" name="fn" placeholder="Mickey"> <br>
 	E-mail : <br>
-	<input type="text" name="email" placeholder="Mickey"> <br>
+	<input type="text" name="email" placeholder="mickey@mouse.com"> <br>
 	Parool : <br>
 	<input type="password" name="password" placeholder="xxx"><br>
 	Parool veel kord : <br>
@@ -28,8 +28,13 @@ if (isset($_POST['Registreeri']) && !empty($_POST['fn']) && !empty($_POST['email
 //код для добавления нового поьлзователя
 include_once ("functions.php");
 	global $link;
+	//error_reporting(~E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED);//prja4em osibki
+	
 		//проверка есть ли юзер с таким именем в базе 
-	$checkname = mysqli_query($link, "SELECT login FROM dlukas_users WHERE login = '$new_user' ");
+	
+		$checkname = @mysqli_query($link, "SELECT login FROM dlukas_users WHERE login = '$new_user' ");
+	
+	
 		if (mysqli_num_rows($checkname) > 0) {echo "Selline kasutaja juba registreerinud!";}//если есть
 		else {//если нет
 			if (isset($new_user)&&isset($new_email)&&isset($new_pwd)) 
@@ -37,7 +42,7 @@ include_once ("functions.php");
 			$new_pwd1 = sha1($new_pwd);		
 			$sql = "INSERT INTO dlukas_users (login, email, pass) VALUES  ('$new_user', '$new_email', '$new_pwd1)')";
 			$result = mysqli_query($link, $sql) or die ("Eba6nestus".mysqli_error($link));		
-			if($result) {	echo "Uus kasutaja lisatud!"."<br/>";	}
+			if($result) {	echo "Uus kasutaja lisatud!"."<br/>";}
 			}
 		}
 	

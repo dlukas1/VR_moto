@@ -24,4 +24,6 @@ echo $row['pilt'];
 	echo '</div>';
 
 				}
+
+include_once ("vaaded/foot.php");
 ?>

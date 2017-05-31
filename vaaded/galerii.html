@@ -19,3 +19,21 @@ while ($row = mysqli_fetch_assoc($comlist)) {
 	?>
 
 	<a href=""></a>
+
+	<!--Ainult ADMIN saab kustutada kasutajate motorattad-->
+<?php if ((!empty($_SESSION['user']) && $_SESSION['roll']=="admin")):?>
+<form method="post"> 
+	<p><input type="submit" name="Kustuta" value="Kustuta"></p>
+		<?php 
+			if (isset($_POST['Kustuta'])) {
+				include_once ("vaaded/functions.php");
+				global $link;
+				$queryErase = "DELETE FROM dlukas_moto WHERE id > 6";
+				$erase = mysqli_query($link, $queryErase) or die("Ei saa kustutada");
+				if ($erase) {
+					header("Location: ?page=galerii");
+				}
+			}
+		?>
+</form>
+<?php endif; ?>
